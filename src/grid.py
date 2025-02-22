@@ -1,3 +1,5 @@
+#importera random-modulen i Python.
+# Den används för att generera slumpmässiga tal, välja slumpmässiga element från en lista och mycket mer.
 import random
 
 class Grid:

@@ -1,10 +1,12 @@
-from .grid import Grid
-from .player import Player
-from . import pickups
+
+from .grid import Grid # ENBART Grid-klassen
+from .player import Player # ENBART Player-klassen
+from . import pickups # importerar hela pickups.py som en modul, inte en specifik klass eller funktion.
+#from .pickups import Item # Fungerar ej för import, Varför ??
 
 
 
-player = Player(2, 1)
+player = Player(17, 5)
 score = 0
 inventory = []
 
@@ -28,12 +30,48 @@ while not command.casefold() in ["q", "x"]:
     print_status(g)
 
     command = input("Use WASD to move, Q/X to quit. ")
-    command = command.casefold()[:1]
+    command = command.casefold()[:1] # gör strängen till gemener och tar ut första tecknet
 
     if command == "d" and player.can_move(1, 0, g):  # move right
         # TODO: skapa funktioner, så vi inte behöver upprepa så mycket kod för riktningarna "W,A,S"
         maybe_item = g.get(player.pos_x + 1, player.pos_y)
         player.move(1, 0)
+
+        if isinstance(maybe_item, pickups.Item):
+            # we found something
+            score += maybe_item.value
+            print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
+            #g.set(player.pos_x, player.pos_y, g.empty)
+            g.clear(player.pos_x, player.pos_y)
+
+    if command == "a" and player.can_move(-1, 0, g):  # move left
+        # TODO: skapa funktioner, så vi inte behöver upprepa så mycket kod för riktningarna "W,A,S"
+        maybe_item = g.get(player.pos_x - 1, player.pos_y)
+        player.move(-1, 0)
+
+        if isinstance(maybe_item, pickups.Item):
+            # we found something
+            score += maybe_item.value
+            print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
+            #g.set(player.pos_x, player.pos_y, g.empty)
+            g.clear(player.pos_x, player.pos_y)
+
+    if command == "s" and player.can_move(0, 1, g):  # move down
+        # TODO: skapa funktioner, så vi inte behöver upprepa så mycket kod för riktningarna "W,A,S"
+        maybe_item = g.get(player.pos_x , player.pos_y + 1)
+        player.move(0, 1)
+
+        if isinstance(maybe_item, pickups.Item):
+            # we found something
+            score += maybe_item.value
+            print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
+            #g.set(player.pos_x, player.pos_y, g.empty)
+            g.clear(player.pos_x, player.pos_y)
+
+    if command == "w" and player.can_move(0, -1, g):  # move up
+        # TODO: skapa funktioner, så vi inte behöver upprepa så mycket kod för riktningarna "W,A,S"
+        maybe_item = g.get(player.pos_x, player.pos_y -1)
+        player.move(0, -1)
 
         if isinstance(maybe_item, pickups.Item):
             # we found something

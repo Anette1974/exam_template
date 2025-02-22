@@ -1,3 +1,11 @@
+
+# Flyttad från game.py
+#def print_status(game_grid):
+#   """Visa spelvärlden och antal poäng."""
+#    print("--------------------------------------")
+#    print(f"You have {score} points.")
+#    print(game_grid)
+
 class Player:
     marker = "@"
 
@@ -16,5 +24,3 @@ class Player:
     def can_move(self, x, y, grid):
         return True
         #TODO: returnera True om det inte står något i vägen
-
-
