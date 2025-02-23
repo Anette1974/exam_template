@@ -33,7 +33,7 @@ def move_player (dx, dy):
             #g.set(player.pos_x, player.pos_y, g.empty)
             inventory.append(maybe_item) # ac, lägger till senaste frukten i inventory
             print(f"Du har lagt till {maybe_item.name} i inventory.") #ac, skriver ut senaste plockade frukten
-            print(f"Inventory innehåller nu:{[p.name for p in inventory]}") # ac, skriver ut vad som finns i inventory
+            #print(f"Inventory innehåller nu:{[p.name for p in inventory]}") # ac, skriver ut vad som finns i inventory
             g.clear(player.pos_x, player.pos_y)
 
 
@@ -42,7 +42,7 @@ command = "a"
 while not command.casefold() in ["q", "x"]:
     print_status(g)
 
-    command = input("Use WASD to move, Q/X to quit. ")
+    command = input("Use WASD to move, Q/X to quit or I to show inventory. ")
     command = command.casefold()[:1] # gör strängen till gemener och tar ut första tecknet
 
     if command == "d":
@@ -56,6 +56,9 @@ while not command.casefold() in ["q", "x"]:
 
     elif command == "w":
         move_player(0, -1) # move down
+
+    elif command == "i":
+        print(f"You have picked these items:{[p.name for p in inventory]}")  # ac, skriver ut vad som finns i inventory
 
 # Hit kommer vi när while-loopen slutar
 print("Thank you for playing!")
