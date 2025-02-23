@@ -26,7 +26,6 @@ def print_status(game_grid):
 def move_player (dx, dy):
     global score # funktionen ändrar värdet på score och då tolkar pyton det som en lokal variabel, detta ger fel då variabeln behöver vara global
     if player.can_move(dx, dy, g):  # move according to command
-        # TODO: skapa funktioner, så vi inte behöver upprepa så mycket kod för riktningarna "W,A,S"
         maybe_item = g.get(player.pos_x + dx, player.pos_y + dy)
         player.move(dx, dy)
 
