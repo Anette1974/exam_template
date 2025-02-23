@@ -3,8 +3,6 @@ from .player import Player # ENBART Player-klassen
 from . import pickups # importerar hela pickups.py som en modul, inte en specifik klass eller funktion.
 #from .pickups import Item # Fungerar ej för import, Varför ??
 
-
-
 player = Player(17, 5)
 score = 0
 inventory = []
@@ -13,7 +11,6 @@ g = Grid()
 g.set_player(player)
 g.make_walls()
 pickups.randomize(g)
-
 
 # TODO: flytta denna till en annan fil
 def print_status(game_grid):
@@ -34,6 +31,9 @@ def move_player (dx, dy):
             score += maybe_item.value
             print(f"You found a {maybe_item.name}, +{maybe_item.value} points.")
             #g.set(player.pos_x, player.pos_y, g.empty)
+            inventory.append(maybe_item) # ac, lägger till senaste frukten i inventory
+            print(f"Du har lagt till {maybe_item.name} i inventory.") #ac, skriver ut senaste plockade frukten
+            print(f"Inventory innehåller nu:{[p.name for p in inventory]}") # ac, skriver ut vad som finns i inventory
             g.clear(player.pos_x, player.pos_y)
 
 
