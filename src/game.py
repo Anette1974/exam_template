@@ -25,6 +25,7 @@ def move_player (dx, dy):
     if player.can_move(dx, dy, g):  # move according to command
         maybe_item = g.get(player.pos_x + dx, player.pos_y + dy)
         player.move(dx, dy)
+        score += -1
 
         if isinstance(maybe_item, pickups.Item):
             # we found something
