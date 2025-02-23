@@ -1,11 +1,4 @@
 
-# Flyttad från game.py
-#def print_status(game_grid):
-#   """Visa spelvärlden och antal poäng."""
-#    print("--------------------------------------")
-#    print(f"You have {score} points.")
-#    print(game_grid)
-
 class Player:
     marker = "@"
 
@@ -21,6 +14,12 @@ class Player:
         self.pos_x += dx
         self.pos_y += dy
 
-    def can_move(self, x, y, grid):
-        return True
-        #TODO: returnera True om det inte står något i vägen
+    def can_move(self, dx, dy, grid):
+        new_x = self.pos_x + dx # ac, adderar nytt x värde till befintligt position
+        new_y = self.pos_y + dy # ac, adderar nytt y värde till befintlig position
+        next_step = grid.get(new_x, new_y) # ac, hämtar vad som finns på nästa positions
+        if next_step == "■": # ac, kontrollerar om nästa position är en vägg
+            print("Du gick in i en vägg!")
+            return False
+        else:
+            return True
