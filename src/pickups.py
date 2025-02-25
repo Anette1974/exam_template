@@ -22,4 +22,3 @@ def randomize(grid):
             if grid.is_empty(x, y):
                 grid.set(x, y, item)
                 break  # avbryt while-loopen, fortsätt med nästa varv i for-loopen
-
