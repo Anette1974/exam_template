@@ -1,8 +1,6 @@
 from .grid import Grid # ENBART Grid-klassen
 from . import pickups # importerar hela pickups.py som en modul, inte en specifik klass eller funktion.
-#from .pickups import Item # Fungerar ej för import, Varför ??
 from .player import Player # ENBART Player-klassen
-
 
 player = Player(17, 5)
 inventory = []
@@ -12,17 +10,12 @@ g.set_player(player)
 g.make_walls()
 pickups.randomize(g)
 
-# funktionen print_status flyttad till player.py
-
-
-# funktionen move_player flyttad till player.py
-
 command = "a"
 # Loopa tills användaren trycker Q eller X.
 while not command.casefold() in ["q", "x"]:
     player.print_status(g)
 
-    command = input("Use WASD to move, Q/X to quit or I to show inventory. ")
+    command = input("Use WASD to move, Q/X to quit or I to show inventory: ")
     command = command.casefold()[:1]  # gör strängen till gemener och tar ut första tecknet
 
     if command == "d":
