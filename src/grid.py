@@ -1,5 +1,5 @@
-#importerar random-modulen i Python.
-# Den används för att generera slumpmässiga tal, välja slumpmässiga element från en lista och mycket mer.
+"""importerar random-modulen i Python. Den används för att generera slumpmässiga tal,
+välja slumpmässiga element från en lista och mycket mer. """
 import random
 
 class Grid:
@@ -43,7 +43,6 @@ class Grid:
             xs += "\n"
         return xs
 
-
     def make_walls(self):
         """Skapa väggar runt hela spelplanen"""
         for i in range(self.height):
@@ -54,6 +53,12 @@ class Grid:
             self.set(j, 0, self.wall)
             self.set(j, self.height - 1, self.wall)
 
+    # skapar extra innerväggar i spelplanen, tar x och y koordinater från listorna
+    def inner_walls(self):
+        horizontal = [5, 6, 7, 15, 16, 17, 22, 22, 22]
+        vertical = [3, 3, 3, 9, 9, 9, 4, 5, 6]
+        for x, y, in zip(horizontal, vertical):
+                self.set(x, y, "■")
 
     # Används i filen pickups.py
     def get_random_x(self):
